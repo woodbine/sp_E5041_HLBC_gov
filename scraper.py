@@ -29,15 +29,13 @@ for link in links:
 	url = link['href']
 	if '&type=csv' in url:
 		title = link['title'].split()[2] # get third word in the title
-		print title
-		'''
 		# create the right strings for the new filename
-		csvYr = title.split(' ')[-1]
-		csvMth = title.split(' ')[-2][:3]
-		csvMth = csvMth.upper()
-		csvMth = convert_mth_strings(csvMth);
+		title = title.replace(')','').replace('(','')
+		csvYr = title.split('/')[-1]
+		csvMth = title.split('/')[0]
+		if len(csvMth) == 1:
+			csvMth = '0'+csvMth # handle single digit months
 		filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
 		todays_date = str(datetime.now())
 		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
 		print filename
-		'''
