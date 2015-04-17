@@ -28,7 +28,7 @@ links = soup.findAll('a', href=True)
 for link in links:
 	url = link['href']
 	if '&type=csv' in url:
-		title = link.find(attrs={"title"})
+		title = link['title']
 		print title
 		'''
 		# create the right strings for the new filename
