@@ -6,8 +6,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 
 # Set up variables
-entity_id = "E5043_KUTCRBO_gov"
-url = "http://data.kingston.gov.uk/Kingston_Open_Data/"
+entity_id = "E5041_HLBC_gov"
+url = "http://www.hillingdon.gov.uk/index.jsp?articleid=21085"
 
 # Set up functions
 def convert_mth_strings ( mth_string ):
@@ -27,8 +27,10 @@ links = soup.findAll('a', href=True)
 
 for link in links:
 	url = link['href']
-	if 'https://drive.google.com/file/d/' in url:
-		title = link.contents[0]
+	if '&type=csv' in url:
+		title = link.find(attrs={"title"})
+		print title
+		'''
 		# create the right strings for the new filename
 		csvYr = title.split(' ')[-1]
 		csvMth = title.split(' ')[-2][:3]
@@ -38,3 +40,4 @@ for link in links:
 		todays_date = str(datetime.now())
 		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
 		print filename
+		'''
