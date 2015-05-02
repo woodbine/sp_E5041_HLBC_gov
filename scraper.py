@@ -22,7 +22,6 @@ def convert_mth_strings ( mth_string ):
 def check_regex(txt):
 	rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10+re11+re12+re13+re14+re15,re.IGNORECASE|re.DOTALL)
 	m = rg.search(txt)
-	print m
 	if m:
 		w1=m.group(1)
 		int1=m.group(2)
@@ -40,7 +39,8 @@ def check_regex(txt):
 		c5=m.group(14)
 		word3=m.group(15)
     		print "regex check :" + "("+w1+")"+"("+int1+")"+"("+c1+")"+"("+word1+")"+"("+c2+")"+"("+word2+")"+"("+c3+")"+"("+d1+")"+"("+d2+")"+"("+d3+")"+"("+d4+")"+"("+c4+")"+"("+int2+")"+"("+c5+")"+"("+word3+")"+"\n"
-
+		return txt
+		
 # set up the regex check
 # URL that generated this code:
 # http://txt2re.com/index-python.php3?s=E5017_LLBC_gov_2015_02.csv&17&5&-52&-53&9&-54&-31&-27&-30&34&-55&11&-36&-8&7
@@ -82,7 +82,9 @@ for link in links:
 		if len(csvMth) == 1:
 			csvMth = '0'+csvMth # handle single digit months
 		filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
-		check_regex(filename)
+		checkedFilename = check_regex(filename)
+		print checkedFilename
+		
 		todays_date = str(datetime.now())
 		#scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
 		print filename
