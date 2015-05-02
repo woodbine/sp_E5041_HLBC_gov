@@ -22,6 +22,7 @@ def convert_mth_strings ( mth_string ):
 def check_regex(txt):
 	rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10+re11+re12+re13+re14+re15,re.IGNORECASE|re.DOTALL)
 	m = rg.search(txt)
+	print m
 	if m:
 		w1=m.group(1)
 		int1=m.group(2)
